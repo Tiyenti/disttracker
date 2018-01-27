@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>disttracker</title>
+        <style>
+         body
+         {
+             background: black;
+             font-family: sans-serif;
+             color: #606060;
+             user-select: none;
+         }
+
+         .on
+         {
+             color: #FFFFFF;
+         }
+
+         td
+         {
+             text-align: center;
+             padding: 3px;
+             padding-right: 5px;
+             padding-left: 5px;
+             background-color: #101010;
+             cursor: default;
+         }
+
+         td#abilities
+         {
+             background-color: #000000;
+             padding-right: 6px;
+             padding-left: 3px;
+         }
+
+         td.number
+         {
+             text-align: center;
+             padding: 1px;
+         }
+        </style>
+    </head>
+    <body>
+        <script>
+         try
+         {
+             const remote = require('electron').remote;
+
+             window.onload = function WindowLoad(event) {
+                 var win = remote.getCurrentWindow();
+                 win.setSize(295, 155)
+                 loop();
+             }
+         }
+         catch (ex) {
+             // no electron, oh well ¯\_(ツ)_/¯
+         }
+
+         function toggle(item)
+         {
+             item.classList.toggle('on');
+         }
+
+         function ability_toggle(item)
+         {
+             if (item.style.opacity == 0.01) {
+                 item.style.opacity = 100;
+             }
+             else
+                 {
+                     item.style.opacity = 0.01;
+                 }
+         }
+        </script>
+
+        <table>
+            <tr>
+                <td rowspan="3" colspan="3" id="abilities">
+                    <img src="images/all_off.png" width="120px"/>
+                    <img src="images/wings.png" width="120px"
+                         style="position: absolute; top: 13px; left: 13px;  opacity: 0.01;"
+                         onclick="ability_toggle(this)"/>
+                    <img src="images/jets.png" width="86px"
+                         style="position: absolute; top: -9px; left: 30px;  opacity: 0.01;"
+                         onclick="ability_toggle(this)"/>
+                    <img src="images/jump.png" width="86px"
+                         style="position: absolute; top: 69px; left: 30px; opacity: 0.01;"
+                         onclick="ability_toggle(this)"/>
+                    <img src="images/boost.png" width="60px"
+                         style="position: absolute; top: 40px; left: 43px; opacity: 100;"
+                         onclick="ability_toggle(this)"/>
+                </td>
+                <td onclick="toggle(this)">BS</td>
+                <td onclick="toggle(this)">LS</td>
+                <td onclick="toggle(this)">NS</td>
+                <td onclick="toggle(this)">De</td>
+            </tr>
+            <tr>
+                <td onclick="toggle(this)">GZ</td>
+                <td onclick="toggle(this)">Aft</td>
+                <td onclick="toggle(this)">Fri</td>
+                <td onclick="toggle(this)">Ma</td>
+            </tr>
+            <tr>
+                <td onclick="toggle(this)">Co</td>
+                <td onclick="toggle(this)">Mo</td>
+                <td onclick="toggle(this)">DU</td>
+                <td onclick="toggle(this)">Cr</td>
+            </tr>
+        </table>
+    </body>
+</html>
